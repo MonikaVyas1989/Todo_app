@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Todo_app.Model
 {
-    class Person
+    public class Person
     {
 
     }
