@@ -10,16 +10,14 @@ namespace Todo_app.Model
         private readonly  int personId;
         private string firstName, lastName;
 
-        public Person()
-        {
-           /* this.personId = 1;
-            this.firstName = "Monika";
-            this.lastName = "Vyas";*/
-        }
-
         //Property to get value of PersonId ..
         public int PersonId { get { return personId; } }
 
+
+        public Person()
+       {
+       }   
+           
         //Property to access of first name which can not be null or empty..
         public string FirstName
         {
@@ -27,9 +25,9 @@ namespace Todo_app.Model
             { return firstName; }  
             set 
             {
-                if(value .Equals (""))
+                if(string .IsNullOrEmpty (value))
                 {
-                    throw new ArgumentNullException("First name must have a value..");
+                    throw new ArgumentException("First name must have a value..");
                 }
                 firstName = value;
             }    
@@ -41,13 +39,14 @@ namespace Todo_app.Model
             get {return lastName;} 
             set
             {
-                if (value.Equals(""))
+                if (string.IsNullOrEmpty (value))
                 {
-                    throw new ArgumentNullException("Last name must have a value..");
+                    throw new ArgumentException("Last name must have a value..");
                 }
                 lastName = value; 
             }
         }
     }
+    
 
 }
