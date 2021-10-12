@@ -6,16 +6,32 @@ namespace Todo_app.Tests
 {
     public class TodoTests
     {
+
+        [Fact]
+        public void Constructor()
+        {
+            int todoId =0;
+            string description = "";
+            bool done = false;
+            Person assignee = null;
+
+            Todo todoTest = new Todo(todoId,description);
+
+            Assert.NotNull(todoTest);
+            Assert.Equal(todoTest.TodoId, todoId);
+            Assert.Equal(todoTest.Description, description);
+            Assert.Equal(todoTest.Done, done);
+            Assert.Equal(todoTest.Assignee, assignee);
+        }
       
             [Theory]
             [InlineData(1)]
+            [InlineData(0)]
             [InlineData(-1)]
             [InlineData(9999999)]
-
-            public void ConstructorTodorIdCheck(int todoId)            
+            public void PropertyrTodoIdCheck(int todoId)            
             {
                 string description = "test";
-
                 Todo testTodo = new Todo(todoId, description);
 
                 Assert.Equal(testTodo.TodoId, todoId);
@@ -25,8 +41,7 @@ namespace Todo_app.Tests
         [InlineData(null)]
         [InlineData("")]
         [InlineData("test")]
-
-        public void ConstructorTodoDescriptionCheck(string description)
+        public void ProtertyDescriptionCheck(string description)
         {
             int todoId = 1;
 
@@ -47,18 +62,16 @@ namespace Todo_app.Tests
             testTodo.Done = done;
             Assert.Equal(testTodo.Done, done);
         }
-        // Test class Person type object with proper assert
-        //[Theory]
-        //[InlineData()]
-        //[InlineData()]
-
-        //public void PropertyAssigneeCheck(bool assignee)
-        //{
-        //    int todoId = 1;
-        //    string description = "test";
-        //    Todo testTodo = new Todo(todoId, description);
-        //    testTodo.Assignee = assignee;
-        //    Assert.(testTodo.Assignee, assignee);
-        //}
+        //Test class Person type object with proper assert
+        [Theory]
+        [InlineData(null)]
+        public void PropertyAssigneeCheck(Person assignee)
+        {
+            int todoId = 1;
+            string description = "test";
+            Todo testTodo = new Todo(todoId, description);
+            testTodo.Assignee = assignee;
+            Assert.Equal(testTodo.Assignee, assignee);
+        }
     }
 }
