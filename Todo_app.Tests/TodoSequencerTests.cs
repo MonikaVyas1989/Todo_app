@@ -8,31 +8,31 @@ namespace Todo_app.Tests
 {
     public class TodoSequencerTests
     {
+        // Tests NextTodoId method, Tested with fact, theory not works
+        [Fact]
 
-        [Theory]
-        [InlineData(1)]
-        [InlineData(0)]
-        [InlineData(100)]
-        [InlineData(-10)]
-        public void NextTodoIdTests(int todoId)
+        public void NextTodoIdTests()
         {
-            int actualTodoId = todoId +1;
-            
-            int nextTodoId=TodoSequencer.NextTodoId(todoId);
+            for (int i = 1; i < 6; i++)
+            {
+                int nextTodoId = TodoSequencer.NextTodoId();
 
-            Assert.Equal(nextTodoId, actualTodoId);
+                Assert.Equal(i, nextTodoId);
+            }
 
         }
 
 
+        // tests Reset method
         [Theory]
         [InlineData(1)]
-        [InlineData(0)]
-        [InlineData(100)]
-        [InlineData(-10)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
         public void ResetTests(int todoId)
         {
-            TodoSequencer.NextTodoId(todoId);
+            int actualTodoId = todoId + 1;
+            int expectedTodoId = TodoSequencer.NextTodoId();
                     
             TodoSequencer.Reset();
 
