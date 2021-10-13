@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Todo_app.Data;
 
 namespace Todo_app.Model
 {
@@ -28,9 +29,9 @@ namespace Todo_app.Model
         public Todo(int todoId,string description )
         {
             this.todoId = todoId;
-            this.description = description;
-            this.done = false;
-            this.assignee = null;
+            Description = description;
+            Done = false;
+            Assignee = null;
         }
     }
 }
