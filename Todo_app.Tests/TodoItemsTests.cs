@@ -105,6 +105,7 @@ namespace Todo_app.Tests
             Assert.Equal(ArrNotDone.ToArray(),ob.FindByDoneStatus(false));
 
             Assert.Equal(listMadiha.ToArray(), ob.FindByAssignee(Madiha));
+
             Assert.Equal(listobPerson.ToArray(), ob.FindByAssignee(obPerson.PersonId));
 
             Assert.Equal(unAssigned.ToArray(),ob.FindUnassignedTodoItems());

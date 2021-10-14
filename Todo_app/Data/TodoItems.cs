@@ -97,7 +97,8 @@ namespace Todo_app.Data
             {
                 foreach (Todo item in arrTodo)
                 {
-                    if (item.Assignee.PersonId == personId)
+                    if(item.Assignee!=null)
+                    if (item.Assignee.PersonId==personId)
                         listTodo.Add(item);
                 }
                 //for (int i = 0; i < Size(); i++)
@@ -122,7 +123,8 @@ namespace Todo_app.Data
             {
                 foreach (Todo item in arrTodo)
                 {
-                    if (item.Assignee == assignee)
+                    if (item.Assignee != null)
+                        if (item.Assignee == assignee)
                         listTodo.Add(item);
                 }
             }
