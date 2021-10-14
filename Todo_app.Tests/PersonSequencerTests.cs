@@ -17,19 +17,7 @@ namespace Todo_app.Tests
             Assert.Equal(PersonSequencer.PersonId, id);
 
         }
-        [Theory]
-        [InlineData(1)]
-        [InlineData(2)]
-
-        public void PersonIdIncreamentTest(int nextId)
-        {
-
-
-            int PersonnextId = PersonSequencer.NextPersonId();
-            Assert.Equal(nextId, PersonnextId);
-
-        }
-
+      
         [Fact]
         public void PersonNextIdTest()
         {

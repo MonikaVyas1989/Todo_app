@@ -45,11 +45,17 @@ namespace Todo_app.Data
             Todo obTodo = new Todo(0, "");
             try
             {
-                for (int i = 0; i < Size(); i++)
+                foreach (Todo item in arrTodo)
                 {
-                    if (arrTodo[i].TodoId.Equals(todoId))
-                         obTodo= arrTodo[i];
+                    if (item.TodoId.Equals(todoId))
+                        obTodo=(item);
                 }
+
+                //for (int i = 0; i < Size(); i++)
+                //{
+                //    if (arrTodo[i].TodoId.Equals(todoId))
+                //         obTodo= arrTodo[i];
+                //}
             }
             catch 
             {
@@ -57,7 +63,139 @@ namespace Todo_app.Data
             }
             return obTodo;
         }
-        
+
+        // Returns specific data according to done status 
+        public Todo[] FindByDoneStatus(bool doneStatus)
+        {
+            List<Todo> listTodo = new List<Todo>();
+            try
+            {
+                foreach (Todo item in arrTodo)
+                {
+                    if (item.Done.Equals(doneStatus))
+                        listTodo.Add(item);
+                }
+                //for (int i = 0; i < Size(); i++)
+                //{
+                //    if (arrTodo[i].Done.Equals(doneStatus))
+                //        listTodo.Add(arrTodo[i]);
+                //}
+            }
+            catch
+            {
+                Console.WriteLine("/n Exception occured while finding Todo using Done status. Contact System Admin ");
+            }
+
+
+            return listTodo.ToArray();
+        }
+        // Returns specific data according to assigneeId 
+        public Todo[] FindByAssignee(int personId)
+        {
+            List<Todo> listTodo = new List<Todo>();
+            try
+            {
+                foreach (Todo item in arrTodo)
+                {
+                    if (item.Assignee.PersonId == personId)
+                        listTodo.Add(item);
+                }
+                //for (int i = 0; i < Size(); i++)
+                //{
+                //    if (arrTodo[i].Assignee.PersonId.Equals(personId))
+                //        listTodo.Add(arrTodo[i]);
+                //}
+            }
+            catch
+            {
+                Console.WriteLine("/n Exception occured while finding Todo using personId. Contact System Admin ");
+            }
+
+
+            return listTodo.ToArray();
+        }
+        // Returns specific data according to assignee
+        public Todo[] FindByAssignee(Person assignee)
+        {
+            List<Todo> listTodo = new List<Todo>();
+            try
+            {
+                foreach (Todo item in arrTodo)
+                {
+                    if (item.Assignee == assignee)
+                        listTodo.Add(item);
+                }
+            }
+            catch
+            {
+                Console.WriteLine("/n Exception occured while finding Todo using assignee object. Contact System Admin ");
+            }
+
+            return listTodo.ToArray();
+        }
+
+        // Returns specific data where arrTodo has no assignee yet
+        public Todo[] FindUnassignedTodoItems()
+        {
+            List<Todo> listTodo = new List<Todo>();
+            try
+            {
+                foreach (Todo item in arrTodo)
+                {
+                    if (item.Assignee == null)
+                        listTodo.Add(item);
+                }
+                //for (int i = 0; i < Size(); i++)
+                //{
+                //    if (arrTodo[i].Assignee.Equals(null))
+
+                //        listTodo.Add(arrTodo[i]);
+                //}
+            }
+            catch
+            {
+                Console.WriteLine("/n Exception occured while finding unassigned Todo items. Contact System Admin ");
+            }
+
+            return listTodo.ToArray();
+        }
+
+        // Updates arrTodo by removing object from array without nulling using Todo object
+        public static void RemoveFromArrTodo(Todo obTodo)
+        {
+            TodoItems ob = new TodoItems();
+            try
+            {
+                int removeIndex = Array.IndexOf(arrTodo, obTodo);
+                //int size = ob.Size();
+                //Todo[] arrTemp = arrTodo;
+
+                Array.ConstrainedCopy(arrTodo, removeIndex + 1, arrTodo, removeIndex, ob.Size() - (removeIndex + 1));
+                Array.Resize(ref arrTodo, ob.Size() - 1);
+            }
+            catch
+            {
+                Console.WriteLine("/n Exception occured while removing Todo items. Contact System Admin ");
+            }
+
+        }
+        // Updates arrTodo by removing object from array without nulling using todoId
+        public static void RemoveFromArrTodo(int todoId)
+        {
+            TodoItems ob = new TodoItems();
+            try
+            {
+                int removeIndex = Array.IndexOf(arrTodo, ob.FindById(todoId));
+
+                Array.ConstrainedCopy(arrTodo, removeIndex + 1, arrTodo, removeIndex, ob.Size() - (removeIndex + 1));
+                Array.Resize(ref arrTodo, ob.Size() - 1);
+            }
+            catch
+            {
+                Console.WriteLine("/n Exception occured while removing Todo items. Contact System Admin ");
+            }
+        }
+
         public void clear()
         {
             arrTodo = Array.Empty<Todo>();
