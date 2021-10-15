@@ -72,7 +72,23 @@ namespace Todo_app.Data
 
             return personObject;
         }
+        public static void ArrayObjectRemove(int personId)
+        {
+            People people = new People();
+            try
+            {
+                int indexToRemove = Array.IndexOf(array, people.FindById(personId));
+                List<Person> temp = new List<Person>(array);
 
+                temp.RemoveAt(indexToRemove);
+                array = temp.ToArray();
+            }
+            catch
+            {
+                Console.WriteLine("Error occured while removing from Array");
+            }
+
+        }
 
 
         //Creation of method to clear values from array...
